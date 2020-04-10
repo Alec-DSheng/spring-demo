@@ -15,7 +15,7 @@ public class People {
         System.out.println(" start working");
     }
 
-    public void destory() {
+    public void destroy() {
         System.out.println("stop work");
     }
 }

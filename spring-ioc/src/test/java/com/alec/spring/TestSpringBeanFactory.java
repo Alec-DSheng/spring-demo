@@ -22,7 +22,7 @@ public class TestSpringBeanFactory {
         GenralBeanDefinition beanDefinition = new GenralBeanDefinition();
         beanDefinition.setBeanClass(People.class);
         beanDefinition.setInitMethod("init");
-        beanDefinition.setDestroyMethod("destory");
+        beanDefinition.setDestroyMethod("destroy");
         beanDefinition.setScope(BeanDefinition.SCOPE_SINGLE);
         beanFactory.registerBeanDefinition("people", beanDefinition);
     }
