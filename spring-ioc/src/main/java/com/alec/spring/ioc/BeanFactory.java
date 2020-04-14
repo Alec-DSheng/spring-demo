@@ -1,5 +1,8 @@
 package com.alec.spring.ioc;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 /**
  * @Author: alec
  * Description: 定义spring bean factory
@@ -15,4 +18,7 @@ public interface BeanFactory {
     Object getBean(String beanName);
 
 
+    Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args);
+
+    Method determineMethod(BeanDefinition beanDefinition, Object[] args);
 }

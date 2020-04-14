@@ -4,7 +4,7 @@ import com.alec.spring.bean.People;
 import com.alec.spring.bean.PeopleFactory;
 import com.alec.spring.ioc.BeanDefinition;
 import com.alec.spring.ioc.DefaultBeanFactory;
-import com.alec.spring.ioc.GenralBeanDefinition;
+import com.alec.spring.ioc.GeneralBeanDefinition;
 import org.junit.AfterClass;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class TestSpringBeanFactory {
 
     @Test
     public void testConstructor() {
-        GenralBeanDefinition beanDefinition = new GenralBeanDefinition();
+        GeneralBeanDefinition beanDefinition = new GeneralBeanDefinition();
         beanDefinition.setBeanClass(People.class);
         beanDefinition.setInitMethod("init");
         beanDefinition.setDestroyMethod("destroy");
@@ -29,20 +29,21 @@ public class TestSpringBeanFactory {
 
     @Test
     public void testStaticFactory() {
-        GenralBeanDefinition beanDefinition = new GenralBeanDefinition();
+        GeneralBeanDefinition beanDefinition = new GeneralBeanDefinition();
         beanDefinition.setBeanClass(PeopleFactory.class);
         beanDefinition.setBeanFactoryMethodName("createPeople");
+        beanDefinition.setScope(BeanDefinition.SCOPE_PROTOTYPE);
         beanFactory.registerBeanDefinition("staticBean", beanDefinition);
     }
 
     @Test
     public void testFactory() {
-        GenralBeanDefinition beanDefinition = new GenralBeanDefinition();
+        GeneralBeanDefinition beanDefinition = new GeneralBeanDefinition();
         beanDefinition.setBeanClass(PeopleFactory.class);
         String name = "pf";
         beanFactory.registerBeanDefinition(name, beanDefinition);
 
-        beanDefinition = new GenralBeanDefinition();
+        beanDefinition = new GeneralBeanDefinition();
         beanDefinition.setBeanFactoryName(name);
         beanDefinition.setBeanFactoryMethodName("createInstance");
         beanDefinition.setScope(BeanDefinition.SCOPE_SINGLE);

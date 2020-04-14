@@ -2,6 +2,8 @@ package com.alec.spring.ioc;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
 /**
  * @Author: alec
  * Description: 定义bean 实例的 定义
@@ -12,7 +14,7 @@ public interface BeanDefinition {
 
     String SCOPE_SINGLE = "single";
 
-    String SCOPE_PROTOTYPE = "ptototype";
+    String SCOPE_PROTOTYPE = "prototype";
 
     /**
      * Bean 的class
@@ -29,17 +31,22 @@ public interface BeanDefinition {
      * */
     String getBeanFactoryMethodName();
 
+    /**
+     * 定义初始化方法
+     * */
     String getInitMethod();
 
-    String getDestroyMethod();
     /**
-     * 获取bean 的作用域
+     * 定义销毁方法
      * */
-    String getScope();
+    String getDestroyMethod();
+
+    /**
+     * 定义构造参数
+     * */
+    List<?> getConstructorParamsValue();
 
     boolean isSingle();
-
-    boolean isPrototype();
 
     default boolean validate() {
         if (getBeanClass() == null) {

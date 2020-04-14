@@ -1,12 +1,14 @@
 package com.alec.spring.ioc;
 
+import com.alec.spring.di.BeanReference;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -56,6 +58,17 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
         }
         return null;
     }
+
+    @Override
+    public Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args) {
+        return null;
+    }
+
+    @Override
+    public Method determineMethod(BeanDefinition beanDefinition, Object[] args) {
+        return null;
+    }
+
 
     protected Object doGetBean(String beanName) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Objects.requireNonNull(beanName, "bean name is not null");
@@ -112,7 +125,16 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
         }
     }
 
-    private Object createBeanByConstruct(BeanDefinition beanDefinition) throws IllegalAccessException, InstantiationException {
+    private Object createBeanByConstruct(BeanDefinition beanDefinition) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+        /**
+         * 1.根据参数类型进行匹配查找，如果未匹配 则进行第二部
+         * 2.获取所有的构造方法遍历，做参数数量过滤，比对类型是否匹配
+         * 3. 做一个优化
+         *  当判断出构造方法和工厂方法后，对于原型bean 来讲，缓存构造方法和工厂方法
+         *
+         * */
+        Object[] params = this.getConstructParmasValues(beanDefinition);
+
         return  beanDefinition.getBeanClass().newInstance();
     }
 
@@ -125,5 +147,68 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
         Object beanFactory = this.doGetBean(beanDefinition.getBeanFactoryName());
         Method method = beanFactory.getClass().getMethod(beanDefinition.getBeanFactoryMethodName());
         return method.invoke(beanFactory, null);
+    }
+    /**
+     * 构造参中bean 的引用转换成真正的值
+     * */
+    private Object[] getConstructParmasValues(BeanDefinition beanDefinition) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return this.getRealValue(beanDefinition.getConstructorParamsValue());
+    }
+
+    private Object[] getRealValue(List<?> values) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        if (CollectionUtils.isEmpty(values)) {
+            return null;
+        }
+        Object obj;
+        int i = 0;
+        /**
+         * 递归实现类型的转换
+         * */
+        Object[] params = new Object[values.size()];
+        for (Object object: values) {
+            if (object == null) {
+                obj = null;
+            } else if (object instanceof BeanReference) {
+                obj = getObjectForReference(object);
+            } else if (object instanceof  Map) {
+                //TODO 处理类型为MAP的类型转换
+                obj = getObjectForMap((Map<String, Object>) object);
+            } else if (object instanceof Object[] ) {
+                //TODO 处理类型为Object数组的类型转换
+                obj = getObjectForData((Object[]) object);
+            } else if (object instanceof Collection) {
+                //TODO 处理类型为Collection的数据类型转换
+                obj = getObjectForCollection((Collection) object);
+            }  else if (object instanceof Properties) {
+                //TODO 处理类型为Properties的类型
+                obj = getObjectForPorperties((Properties) object);
+            } else {
+                obj = object;
+            }
+            params[i++] = obj;
+        }
+        return params;
+    }
+    private Object getObjectForReference(Object object) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        BeanReference beanReference = (BeanReference) object;
+        return this.doGetBean(beanReference.getBeanName());
+    }
+
+    private Object getObjectForMap(Map<String, Object> params) {
+
+        return null;
+    }
+
+    private Object getObjectForData(Object[] data) {
+
+        return null;
+    }
+
+    private Object getObjectForCollection(Collection<?> collection) {
+        return null;
+    }
+
+    private Object getObjectForPorperties(Properties properties) {
+        return null;
     }
 }
