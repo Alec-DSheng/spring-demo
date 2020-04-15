@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="634c2618-89c0-4d28-bc18-3599d93e817c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/ABean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/BBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/CBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/DBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/di/PropertyValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpirngDi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpringBeanDi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/GeneralBeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/GeneralBeanDefinition.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/spring-ioc/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,18 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spring-ioc/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="488">
-                <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/di/PropertyValue.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -63,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="649">
-              <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+            <state relative-caret-position="330">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpirngDi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="72" column="30" lean-forward="true" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+            <state relative-caret-position="275">
+              <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/GeneralBeanDefinition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="113" column="13" lean-forward="true" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+            <state relative-caret-position="285">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2274#2275#0" expanded="true" />
@@ -111,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="256" column="33" selection-start-line="256" selection-start-column="19" selection-end-line="256" selection-end-column="33" />
+            <state relative-caret-position="283">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,6 +161,7 @@
       <find>createBeanByConstruct</find>
       <find>doGetbB</find>
       <find>setPropertyValue</find>
+      <find>containBeanDefinition</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,10 +186,10 @@
         <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/di/PropertyValue.java" />
         <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java" />
         <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/GeneralBeanDefinition.java" />
-        <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java" />
         <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/DBean.java" />
         <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/bean/CBean.java" />
         <option value="$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpirngDi.java" />
+        <option value="$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java" />
       </list>
     </option>
   </component>
@@ -370,6 +346,45 @@
             </path>
             <path>
               <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="Map" type="1a9f42e2:ClassTreeNode" />
+            </path>
+            <path>
+              <item name="spring-demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -513,7 +528,7 @@
       <updated>1586490140490</updated>
       <workItem from="1586490141974" duration="922000" />
       <workItem from="1586508191385" duration="16701000" />
-      <workItem from="1586953708465" duration="3717000" />
+      <workItem from="1586953708465" duration="4234000" />
     </task>
     <servers />
   </component>
@@ -550,13 +565,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21340000" />
+    <option name="totallyTimeSpent" value="21857000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22961374" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22961374" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -565,7 +580,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34251967" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34251967" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39918947" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -771,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="649">
-          <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spring-ioc/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -788,10 +793,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java">
+    <entry file="file://$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpirngDi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="256" column="33" selection-start-line="256" selection-start-column="19" selection-end-line="256" selection-end-column="33" />
+        <state relative-caret-position="275">
+          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/BeanDefinition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -800,8 +815,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/GeneralBeanDefinition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="113" column="13" lean-forward="true" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+        <state relative-caret-position="285">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2274#2275#0" expanded="true" />
@@ -814,10 +829,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spring-ioc/src/test/java/com/alec/spring/TestSpirngDi.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="72" column="30" lean-forward="true" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+        <state relative-caret-position="245">
+          <caret line="164" column="12" selection-start-line="164" selection-start-column="12" selection-end-line="164" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spring-ioc/src/main/java/com/alec/spring/ioc/DefaultBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -24,6 +24,8 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
 
     private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(INIT_LENGTH);
 
+    private Map<String, String> asixNameMap = new ConcurrentHashMap<>(INIT_LENGTH);
+
     private Map<String, Object>  beanMap = new ConcurrentHashMap<>(INIT_LENGTH);
 
     private ThreadLocal<Set<String>> buildBean = new ThreadLocal<>();
