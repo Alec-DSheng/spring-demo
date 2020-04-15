@@ -1,7 +1,10 @@
 package com.alec.spring.ioc;
 
+import com.alec.spring.di.PropertyValue;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -26,9 +29,11 @@ public class GeneralBeanDefinition implements BeanDefinition {
 
     private List<?> constructParamsValue;
 
-//    private Constructor<?> constructor;
-//
-//    private Method method;
+    private  Constructor<?> constructor;
+
+    private Method method;
+
+    private List<PropertyValue> propertyValue;
 
 
     public void setBeanClass(Class<?> beanClass) {
@@ -92,28 +97,34 @@ public class GeneralBeanDefinition implements BeanDefinition {
         return this.constructParamsValue;
     }
 
+    @Override
+    public List<PropertyValue> getPropertyValue() {
+        return this.propertyValue;
+    }
 
+    public void setPropertyValue(List<PropertyValue> propertyValue) {
+        this.propertyValue = propertyValue;
+    }
 
-//
-//    @Override
-//    public Constructor<?> getConstructor() {
-//        return this.constructor;
-//    }
-//
-//    @Override
-//    public void setConstructor(Constructor<?> constructor) {
-//        this.constructor = constructor;
-//    }
-//
-//    @Override
-//    public Method getFactoryMethod() {
-//        return this.method;
-//    }
-//
-//    @Override
-//    public void setFactoryMethod(Method method) {
-//        this.method = method;
-//    }
+    @Override
+    public Constructor<?> getConstructor() {
+        return this.constructor;
+    }
+
+    @Override
+    public void setConstructor(Constructor<?> constructor) {
+        this.constructor = constructor;
+    }
+
+    @Override
+    public Method getFactoryMethod() {
+        return this.method;
+    }
+
+    @Override
+    public void setFactoryMethod(Method method) {
+        this.method = method;
+    }
 
     @Override
     public boolean isSingle() {

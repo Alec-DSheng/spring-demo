@@ -1,7 +1,10 @@
 package com.alec.spring.ioc;
 
+import com.alec.spring.di.PropertyValue;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -45,6 +48,20 @@ public interface BeanDefinition {
      * 定义构造参数
      * */
     List<?> getConstructorParamsValue();
+
+    List<PropertyValue> getPropertyValue();
+
+    /**
+     * 以下四个方法用于为bean factory 提供缓存 原型bean的构造方法和 工厂方法参数
+     * */
+
+    Constructor<?> getConstructor();
+
+    void setConstructor(Constructor<?> constructor);
+
+    Method getFactoryMethod();
+
+    void setFactoryMethod(Method method);
 
     boolean isSingle();
 

@@ -1,11 +1,13 @@
 package com.alec.spring.ioc;
 
 import com.alec.spring.di.BeanReference;
+import com.alec.spring.di.PropertyValue;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Closeable;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -23,6 +25,8 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
     private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(INIT_LENGTH);
 
     private Map<String, Object>  beanMap = new ConcurrentHashMap<>(INIT_LENGTH);
+
+    private ThreadLocal<Set<String>> buildBean = new ThreadLocal<>();
 
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
@@ -59,10 +63,10 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
         return null;
     }
 
-    @Override
-    public Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args) {
-        return null;
-    }
+//    @Override
+//    public Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args) {
+//        return null;
+//    }
 
     @Override
     public Method determineMethod(BeanDefinition beanDefinition, Object[] args) {
@@ -76,6 +80,18 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
         if (instance != null) {
             return instance;
         }
+        Set<String> ingBeans = buildBean.get();
+        if (ingBeans == null) {
+            ingBeans = new HashSet<>();
+            buildBean.set(ingBeans);
+        }
+        /**
+         * 循环检测是否有构造函数循环依赖bean
+         * */
+        if (ingBeans.contains(beanName)) {
+            throw new BeanDefinitionException(beanName + " 循环依赖 " + ingBeans);
+        }
+        ingBeans.add(beanName);
         BeanDefinition beanDefinition = getBeanDefinition(beanName);
         Class<?> beanClass = beanDefinition.getBeanClass();
         if (beanClass != null) {
@@ -89,6 +105,15 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
             }
         } else {
             instance = createBeanByBeanFactory(beanDefinition);
+        }
+        ingBeans.remove(beanName);
+        /**
+         * 创建完Bean 后 复制属性依赖
+         * */
+        try {
+            this.setPropertyDIValue(beanDefinition, instance);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
         }
         this.doInit(instance, beanDefinition);
         if (beanDefinition.isSingle()) {
@@ -134,8 +159,20 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
          *
          * */
         Object[] params = this.getConstructParmasValues(beanDefinition);
-
-        return  beanDefinition.getBeanClass().newInstance();
+        if (params == null) {
+            return  beanDefinition.getBeanClass().newInstance();
+        } else {
+            /**
+             * 判断获取构造函数
+             * 获取对应的构造方法，并构建Bean
+             * */
+            try {
+                return determineConstructor(beanDefinition, params).newInstance(params);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     private Object createBeanByStaticBeanFactory(BeanDefinition beanDefinition) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
@@ -210,5 +247,83 @@ public class DefaultBeanFactory implements BeanDefinitionRegister, BeanFactory, 
 
     private Object getObjectForPorperties(Properties properties) {
         return null;
+    }
+
+    private Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args) throws Exception {
+
+        Constructor constructor;
+
+        if (args == null) {
+            return beanDefinition.getBeanClass().getConstructor(null);
+        }
+        constructor = beanDefinition.getConstructor();
+        if (constructor != null) {
+            return constructor;
+        }
+        /**
+         * 根据参数类型获取精确匹配的构造方法
+         * */
+        Class[] paramsType = new Class[args.length];
+        int j = 0;
+        for (Object p: args) {
+            paramsType[j++] = p.getClass();
+        }
+        try {
+            constructor = beanDefinition.getBeanClass().getConstructor(paramsType);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (constructor == null) {
+            /**
+             * 第一次精确匹配没有命中，需要第二次遍历所有
+             * */
+            outer : for (Constructor c : beanDefinition.getBeanClass().getConstructors()) {
+                Class[] pts = c.getParameterTypes();
+                if (pts.length == args.length) {
+                    // 参数个数一直
+                    for (int i = 0; i< pts.length; i ++) {
+                        if (!pts[i].isAssignableFrom(args[i].getClass())) {
+                            continue outer;
+                        }
+                    }
+                    constructor = c;
+                    break outer;
+                }
+            }
+        }
+        if (constructor != null) {
+            if (!beanDefinition.isSingle()) {
+                beanDefinition.setConstructor(constructor);
+            }
+
+        } else {
+            throw new BeanDefinitionException("构造方法不合法");
+        }
+        return constructor;
+    }
+    private void setPropertyDIValue(BeanDefinition beanDefinition, Object instance) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+       List<PropertyValue> propertyValues = beanDefinition.getPropertyValue();
+       if (CollectionUtils.isEmpty(propertyValues)) {
+           return;
+       }
+       for (PropertyValue pv: propertyValues) {
+           if (StringUtils.isEmpty(pv.getName())) {
+               continue;
+           }
+           Class<?> clazz = instance.getClass();
+           Field field = clazz.getDeclaredField(pv.getName());
+           field.setAccessible(true);
+           Object rv = pv.getValue();
+           Object v = null;
+           if (rv == null) {
+               v = null;
+           } else if (rv instanceof BeanReference) {
+               v = this.doGetBean(((BeanReference) rv).getBeanName());
+           } else {
+               v = null;
+           }
+           field.set(instance, v);
+       }
     }
 }

@@ -17,8 +17,8 @@ public interface BeanFactory {
      * */
     Object getBean(String beanName);
 
+//    Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args);
 
-    Constructor<?> determineConstructor(BeanDefinition beanDefinition, Object[] args);
 
     Method determineMethod(BeanDefinition beanDefinition, Object[] args);
 }
